@@ -30,3 +30,11 @@ body {
     transform: translate3d(0, 20px, 0);
   }
 }
+
+input {
+  outline: none;
+}
+
+.text-xxs {
+  font-size: 10px;
+}
