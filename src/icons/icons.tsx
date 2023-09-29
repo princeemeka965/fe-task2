@@ -162,3 +162,142 @@ export const SettingsIcon = (props: any) => (
     />
   </svg>
 );
+
+export const CaretDownIcon = (props: any) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="none"
+    {...props}
+  >
+    <path
+      stroke="#1D4ED8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="m16 10-4 4-4-4"
+    />
+  </svg>
+);
+
+export const TagIcon = (props: any) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="none"
+    {...props}
+  >
+    <path
+      stroke="#444"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeMiterlimit={10}
+      strokeWidth={0.7}
+      d="m12.96 5.28 6.383 6.382c.757.758.757 1.98 0 2.738l-5.573 5.572a1.933 1.933 0 0 1-2.737 0L4.65 13.59c-.36-.36-.57-.855-.57-1.365V6.653a1.94 1.94 0 0 1 1.935-1.935h5.573a1.94 1.94 0 0 1 1.372.562Z"
+    />
+    <path
+      stroke="#444"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeMiterlimit={10}
+      strokeWidth={0.7}
+      d="M8.58 10.252a1.042 1.042 0 1 0 0-2.084 1.042 1.042 0 0 0 0 2.085Z"
+    />
+  </svg>
+);
+
+export const UserAddIcon = (props: any) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="none"
+    {...props}
+  >
+    <path
+      stroke="#A80000"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={0.7}
+      d="M15 19c0-2.21-2.686-4-6-4s-6 1.79-6 4m14-5 4-4m-4 0 4 4M9 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"
+    />
+  </svg>
+);
+
+export const UserCheck = (props: any) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="none"
+    {...props}
+  >
+    <path
+      stroke="#0B0B0B"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={0.7}
+      d="M15 19c0-2.21-2.686-4-6-4s-6 1.79-6 4m18-9-4 4-2-2m-6 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"
+    />
+  </svg>
+);
+
+export const UserVoice = (props: any) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="none"
+    {...props}
+  >
+    <path
+      stroke="#0B0B0B"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={0.7}
+      d="M15 19c0-2.21-2.686-4-6-4s-6 1.79-6 4M16.828 5.172a3.999 3.999 0 0 1 0 5.657M19 3a7.07 7.07 0 0 1 0 10M9 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"
+    />
+  </svg>
+);
+
+export const EmailIcon = (props: any) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="none"
+    {...props}
+  >
+    <path
+      stroke="#0B0B0B"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={0.7}
+      d="m4 6 8.229 6 7.77-6M21 8.2v7.6c0 1.12 0 1.68-.218 2.108a2 2 0 0 1-.874.874C19.48 19 18.92 19 17.8 19H6.2c-1.12 0-1.68 0-2.108-.218a2 2 0 0 1-.874-.874C3 17.48 3 16.92 3 15.8V8.2c0-1.12 0-1.68.218-2.108a2 2 0 0 1 .874-.874C4.52 5 5.08 5 6.2 5h11.6c1.12 0 1.68 0 2.108.218a2 2 0 0 1 .874.874C21 6.52 21 7.08 21 8.2Z"
+    />
+  </svg>
+);
+
+export const CaretDown = (props: any) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={16}
+    height={16}
+    fill="none"
+    {...props}
+  >
+    <g clipPath="url(#a)">
+      <path
+        fill="#fff"
+        d="M11.06 5.727 8 8.78 4.94 5.727l-.94.94 4 4 4-4-.94-.94Z"
+      />
+    </g>
+    <defs>
+      <clipPath id="a">
+        <path fill="#fff" d="M0 0h16v16H0z" />
+      </clipPath>
+    </defs>
+  </svg>
+);
