@@ -24,6 +24,13 @@ const AppBody: React.FC = (): any => {
     amount: number;
   }
 
+  interface Candidates {
+    id: number;
+    name: string;
+    location: string;
+    degree: string;
+  }
+
   let browsingCategories: Categories[];
 
   browsingCategories = [
@@ -101,12 +108,53 @@ const AppBody: React.FC = (): any => {
     setSearchInput(value);
   };
 
+  // Array listing of candidates
+  let candidatesList: Candidates[];
+  candidatesList = [
+    {
+      id: 20,
+      name: "Aaliyah Sanderson",
+      location: "Riyadh, Saudi Arabia",
+      degree: "Bachelor - Cambridge University (2023 - 2023)",
+    },
+    {
+      id: 21,
+      name: "John Doe",
+      location: "Bostom, USA",
+      degree: "Bachelor - MIT (2023 - 2023)",
+    },
+    {
+      id: 22,
+      name: "Thomas Matt",
+      location: "Edinburgh, UK",
+      degree: "Bachelor - Harvard University (2023 - 2023)",
+    },
+    {
+      id: 23,
+      name: "Kamilia Smith",
+      location: "London, UK",
+      degree: "Bachelor - Boston University (2023 - 2023)",
+    },
+    {
+      id: 24,
+      name: "Roy Jade",
+      location: "Cambridge, UK",
+      degree: "Bachelor - Yale (2023 - 2023)",
+    },
+    {
+      id: 25,
+      name: "Ahmed Salman",
+      location: "New York, USA",
+      degree: "Bachelor - Cambridge University (2023 - 2023)",
+    },
+  ];
+
   return (
     <>
       <div className="flex justify-end w-full">
         <div
-          className="flex flex-col fixed bg-lightManiac p-5"
-          style={{ height: "100vh", width: "96%" }}
+          className="flex flex-col bg-lightManiac p-5"
+          style={{ minHeight: "100vh", width: "96%" }}
         >
           {/** HEADER */}
           <div className="w-full flex flex-row px-3 my-2">
@@ -196,7 +244,7 @@ const AppBody: React.FC = (): any => {
                     <EmailIcon />
                   </span>
                 </div>
-                <div className="flex ml-1 py-2 px-3 gap-2 items-center rounded-md bg-maniacBlue">
+                <div className="flex ml-1 py-2 px-2 gap-2 items-center rounded-md bg-maniacBlue">
                   <div className="flex self-stretch items-center">
                     <span className="text-xs text-white">
                       Move To Video Interview I
@@ -278,6 +326,7 @@ const AppBody: React.FC = (): any => {
               </div>
             </div>
 
+            {/** CANDIDATES LIST BLOCK */}
             <div className="w-2/3 flex ml-1 flex-col bg-white rounded-2xl p-4 gap-1">
               <div className="w-full flex justify-between self-stretch items-center border-b">
                 <div className="flex items-center gap-8">
@@ -308,6 +357,76 @@ const AppBody: React.FC = (): any => {
                   </div>
                 </div>
               </div>
+
+              {candidatesList.map((candidate) => (
+                <div
+                  className="w-full flex justify-between self-stretch items-center border-b"
+                  key={candidate.id}
+                >
+                  <div className="flex items-center gap-8 py-3">
+                    <div className="flex flex-col justify-center">
+                      <input type="checkbox" className="gap-2" />
+                    </div>
+                    <div className="w-14 h-14 flex flex-col justify-center p-4 bg-opaqueBlue rounded-full">
+                      <span className="font-semibold text-xl text-greyBlue">
+                        AS
+                      </span>
+                    </div>
+                    <div className="flex flex-col justify-center">
+                      <span className="text-sm font-semibold">
+                        {candidate.name}
+                      </span>
+                      <span className="text-xxs my-2">
+                        {candidate.location}
+                      </span>
+                      <span className="text-xxs">{candidate.degree}</span>
+                      <div className="flex my-2">
+                        <span className="text-darkBlue text-xxs">
+                          #top_candidate
+                        </span>
+                        <span className="text-darkBlue text-xxs mx-3">
+                          #top_candidate
+                        </span>
+                      </div>
+                      <div className="flex my-1">
+                        <span
+                          className="flex py-1 px-3 rounded-full"
+                          style={{ backgroundColor: "#F3FAFC" }}
+                        >
+                          <span
+                            className="text-xxs font-semibold"
+                            style={{ color: "#037092" }}
+                          >
+                            New York
+                          </span>
+                        </span>
+                        <span
+                          className="flex py-1 px-3 mx-2 rounded-full"
+                          style={{ backgroundColor: "#F3FAFC" }}
+                        >
+                          <span
+                            className="text-xxs font-semibold"
+                            style={{ color: "#037092" }}
+                          >
+                            Marketing
+                          </span>
+                        </span>
+                        <span
+                          className="flex py-1 px-3 rounded-full"
+                          style={{ backgroundColor: "#F3FAFC" }}
+                        >
+                          <span
+                            className="text-xxs font-semibold"
+                            style={{ color: "#037092" }}
+                          >
+                            London
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
