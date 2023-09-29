@@ -2,7 +2,10 @@ import { useState } from "react";
 import Menu from "../components/Menu";
 import {
   CaretDownIcon,
+  CircleWarning,
+  DocumentIcon,
   EmailIcon,
+  SearchIcon,
   TagIcon,
   UserAddIcon,
   UserCheck,
@@ -13,6 +16,7 @@ const AppBody: React.FC = (): any => {
   const [selectedCategory, setSelected] = useState<string>(
     "Opportunity Browsing"
   );
+  const [searchInput, setSearchInput] = useState<string>("");
 
   interface Categories {
     id: number;
@@ -38,20 +42,63 @@ const AppBody: React.FC = (): any => {
       data: "Technical Interview",
       amount: 123,
     },
+    {
+      id: 4,
+      data: "Opportunity Browsing",
+      amount: 243,
+    },
+    {
+      id: 5,
+      data: "Video Interview I",
+      amount: 25,
+    },
+    {
+      id: 6,
+      data: "Video Interview II",
+      amount: 25,
+    },
+    {
+      id: 7,
+      data: "Video Interview III",
+      amount: 25,
+    },
+    {
+      id: 8,
+      data: "Offer",
+      amount: 25,
+    },
+    {
+      id: 9,
+      data: "Withdrawn",
+      amount: 25,
+    },
   ];
 
-  const categoryHover = (event: any, state: boolean): void => {
-    if (state) {
-      // a category div is hovered on
-      // change background color of the span element containing our `amount` data
-      event.target.querySelector("[aria-modal]").classList.add("bg-faintBlue");
-    } else {
-      // on mouse leave
-      // revert background color of the span element containing our `amount` data
-      event.target
-        .querySelector("[aria-modal]")
-        .classList.remove("bg-faintBlue");
-    }
+  const categoryHover = (event: any, state: boolean, data: string): void => {
+    // Check if hovered content is not the selected content
+    // If it's not, apply hover styles
+    if (data !== selectedCategory)
+      if (state) {
+        // a category div is hovered on
+        // change background color of the span element containing our `amount` data
+        event.target
+          .querySelector("[aria-modal]")
+          .classList.add("bg-faintBlue");
+        event.target
+          .querySelector("[aria-modal]")
+          .classList.remove("bg-gray-100");
+      } else {
+        // on mouse leave
+        // revert background color of the span element containing our `amount` data
+        event.target
+          .querySelector("[aria-modal]")
+          .classList.remove("bg-faintBlue");
+        event.target.querySelector("[aria-modal]").classList.add("bg-gray-100");
+      }
+  };
+
+  const handleSearch = (value: string): void => {
+    setSearchInput(value);
   };
 
   return (
@@ -61,6 +108,7 @@ const AppBody: React.FC = (): any => {
           className="flex flex-col fixed bg-lightManiac p-5"
           style={{ height: "100vh", width: "96%" }}
         >
+          {/** HEADER */}
           <div className="w-full flex flex-row px-3 my-2">
             <div className="w-1/3 flex flex-col">
               <span className="text-lg font-semibold text-darkBlue">
@@ -90,15 +138,27 @@ const AppBody: React.FC = (): any => {
                   >
                     {browsingCategories.map((categories) => (
                       <div
-                        className="flex w-full py-3 px-4 justify-between cursor-pointer items-center text-darkSkin hover:text-darkBlue hover:bg-opaqueBlue shadow-sm"
+                        className={`flex w-full py-3 px-4 justify-between cursor-pointer items-center ${
+                          selectedCategory !== categories.data
+                            ? "text-darkSkin hover:text-darkBlue hover:bg-opaqueBlue"
+                            : "text-darkBlue bg-opaqueBlue"
+                        } shadow-sm`}
                         key={categories.id}
-                        onMouseEnter={(e) => categoryHover(e, true)}
-                        onMouseLeave={(e) => categoryHover(e, false)}
+                        onMouseEnter={(e) =>
+                          categoryHover(e, true, categories.data)
+                        }
+                        onMouseLeave={(e) =>
+                          categoryHover(e, false, categories.data)
+                        }
                         onClick={() => setSelected(categories.data)}
                       >
                         <span className="text-base">{categories.data}</span>
                         <span
-                          className="py-1 px-3 rounded-full flex justify-center bg-gray-100"
+                          className={`py-1 px-3 rounded-full flex justify-center ${
+                            selectedCategory !== categories.data
+                              ? "bg-gray-100"
+                              : "bg-faintBlue"
+                          }`}
                           aria-modal
                         >
                           <span className="text-sm">{categories.amount}</span>
@@ -144,6 +204,107 @@ const AppBody: React.FC = (): any => {
                   </div>
                   <div className="items-center flex self-stretch p-1 border-l border-gray-100">
                     <img src="./expand_more.png" alt="expand" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/** SECTION */}
+          <div className="w-full flex my-4 px-3">
+            <div className="w-1/3 flex flex-col mr-4">
+              <div className="w-full flex bg-white p-3 justify-between items-center self-stretch shadow-sm rounded-md">
+                <SearchIcon />
+                <input
+                  type="text"
+                  value={searchInput}
+                  placeholder="Search by name, edu, exp or #tag"
+                  className="w-full ml-4 h-full"
+                  onChange={(e) => handleSearch(e.target.value)}
+                />
+                <CircleWarning />
+              </div>
+
+              <div className="w-full flex flex-col bg-white my-6 items-start self-stretch shadow-sm rounded-md">
+                <div className="flex w-full p-4 justify-between items-center self-stretch shadow-sm">
+                  <span className="text-sm">Filters</span>
+                  <span className="text-xs">0 selected</span>
+                </div>
+                <div className="flex w-full p-4 justify-between items-center self-stretch shadow-sm">
+                  <span className="flex">
+                    <DocumentIcon />
+                    <span className="text-sm flex flex-col justify-center mx-1">
+                      Personal Information
+                    </span>
+                  </span>
+                  <CaretDownIcon />
+                </div>
+                <div className="flex w-full p-4 justify-between items-center self-stretch shadow-sm">
+                  <span className="flex">
+                    <DocumentIcon />
+                    <span className="text-sm flex flex-col justify-center mx-1">
+                      Education
+                    </span>
+                  </span>
+                  <CaretDownIcon />
+                </div>
+                <div className="flex w-full p-4 justify-between items-center self-stretch shadow-sm">
+                  <span className="flex">
+                    <DocumentIcon />
+                    <span className="text-sm flex flex-col justify-center mx-1">
+                      Work Experience
+                    </span>
+                  </span>
+                  <CaretDownIcon />
+                </div>
+                <div className="flex w-full p-4 justify-between items-center self-stretch shadow-sm">
+                  <span className="flex">
+                    <DocumentIcon />
+                    <span className="text-sm flex flex-col justify-center mx-1">
+                      Activity Filter
+                    </span>
+                  </span>
+                  <CaretDownIcon />
+                </div>
+                <div className="flex w-full p-4 justify-between items-center self-stretch shadow-sm">
+                  <span className="flex">
+                    <DocumentIcon />
+                    <span className="text-sm flex flex-col justify-center mx-1">
+                      Advanced Filter
+                    </span>
+                  </span>
+                  <CaretDownIcon />
+                </div>
+              </div>
+            </div>
+
+            <div className="w-2/3 flex ml-1 flex-col bg-white rounded-2xl p-4 gap-1">
+              <div className="w-full flex justify-between self-stretch items-center border-b">
+                <div className="flex items-center gap-8">
+                  <input type="checkbox" className="gap-1" />
+                  <span className="flex flex-col justify-center">
+                    <span className="text-sm text-darkBlue font-semibold">
+                      247 Candidates
+                    </span>
+                  </span>
+                </div>
+                <div className="flex items-center self-stretch p-4">
+                  <div className="flex items-start gap-2 border-r mx-4">
+                    <span className="text-sm text-darkBlue mx-4">
+                      Qualified
+                    </span>
+                  </div>
+                  <div className="flex items-start gap-2 border-r mx-4">
+                    <span className="text-sm text-darkSkin">Task</span>
+                    <span className="py-1 px-2 rounded-full flex justify-center bg-gray-100 mx-2">
+                      <span className="text-xxs">25</span>
+                    </span>
+                  </div>
+                  <div className="flex items-start gap-2 border-r">
+                    <span className="text-sm text-darkSkin">Disqualified</span>
+                    <span className="py-1 px-2 rounded-full flex justify-center bg-gray-100 mx-2">
+                      <span className="text-xxs">78</span>
+                    </span>
                   </div>
                 </div>
               </div>
