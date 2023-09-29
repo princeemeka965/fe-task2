@@ -12,7 +12,8 @@ module.exports = {
         darkSkin: '#0B0B0B',
         faintBlue: '#D1DDFF',
         opaqueBlue: '#EDF2FF',
-        maniacBlue: '#1D5ECD'
+        maniacBlue: '#1D5ECD',
+        greyLight: '#F7F8FD'
       }
     },
   },

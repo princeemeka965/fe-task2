@@ -5,6 +5,7 @@ import {
   CircleWarning,
   DocumentIcon,
   EmailIcon,
+  NoteBookXS,
   SearchIcon,
   TagIcon,
   UserAddIcon,
@@ -18,17 +19,60 @@ const AppBody: React.FC = (): any => {
   );
   const [searchInput, setSearchInput] = useState<string>("");
 
-  interface Categories {
-    id: number;
-    data: string;
-    amount: number;
-  }
-
   interface Candidates {
     id: number;
     name: string;
     location: string;
     degree: string;
+  }
+
+  // Array listing of candidates
+  let candidatesList: Candidates[];
+  candidatesList = [
+    {
+      id: 20,
+      name: "Aaliyah Sanderson",
+      location: "Riyadh, Saudi Arabia",
+      degree: "Bachelor - Cambridge University (2023 - 2023)",
+    },
+    {
+      id: 21,
+      name: "John Doe",
+      location: "Bostom, USA",
+      degree: "Bachelor - MIT (2023 - 2023)",
+    },
+    {
+      id: 22,
+      name: "Thomas Matt",
+      location: "Edinburgh, UK",
+      degree: "Bachelor - Harvard University (2023 - 2023)",
+    },
+    {
+      id: 23,
+      name: "Kamilia Smith",
+      location: "London, UK",
+      degree: "Bachelor - Boston University (2023 - 2023)",
+    },
+    {
+      id: 24,
+      name: "Roy Jade",
+      location: "Cambridge, UK",
+      degree: "Bachelor - Yale (2023 - 2023)",
+    },
+    {
+      id: 25,
+      name: "Ahmed Salman",
+      location: "New York, USA",
+      degree: "Bachelor - Cambridge University (2023 - 2023)",
+    },
+  ];
+
+  const [candidates, setCandidates] = useState<Candidates[]>(candidatesList);
+
+  interface Categories {
+    id: number;
+    data: string;
+    amount: number;
   }
 
   let browsingCategories: Categories[];
@@ -106,48 +150,18 @@ const AppBody: React.FC = (): any => {
 
   const handleSearch = (value: string): void => {
     setSearchInput(value);
+    if (value !== "") {
+      let newData = candidatesList.filter(
+        (data) =>
+          data.name.includes(value) ||
+          data.degree.includes(value) ||
+          data.location.includes(value)
+      );
+      if (newData.length > 0) setCandidates(newData);
+    } else {
+      setCandidates(candidatesList);
+    }
   };
-
-  // Array listing of candidates
-  let candidatesList: Candidates[];
-  candidatesList = [
-    {
-      id: 20,
-      name: "Aaliyah Sanderson",
-      location: "Riyadh, Saudi Arabia",
-      degree: "Bachelor - Cambridge University (2023 - 2023)",
-    },
-    {
-      id: 21,
-      name: "John Doe",
-      location: "Bostom, USA",
-      degree: "Bachelor - MIT (2023 - 2023)",
-    },
-    {
-      id: 22,
-      name: "Thomas Matt",
-      location: "Edinburgh, UK",
-      degree: "Bachelor - Harvard University (2023 - 2023)",
-    },
-    {
-      id: 23,
-      name: "Kamilia Smith",
-      location: "London, UK",
-      degree: "Bachelor - Boston University (2023 - 2023)",
-    },
-    {
-      id: 24,
-      name: "Roy Jade",
-      location: "Cambridge, UK",
-      degree: "Bachelor - Yale (2023 - 2023)",
-    },
-    {
-      id: 25,
-      name: "Ahmed Salman",
-      location: "New York, USA",
-      degree: "Bachelor - Cambridge University (2023 - 2023)",
-    },
-  ];
 
   return (
     <>
@@ -358,7 +372,7 @@ const AppBody: React.FC = (): any => {
                 </div>
               </div>
 
-              {candidatesList.map((candidate) => (
+              {candidates.map((candidate) => (
                 <div
                   className="w-full flex justify-between self-stretch items-center border-b"
                   key={candidate.id}
@@ -421,6 +435,31 @@ const AppBody: React.FC = (): any => {
                           >
                             London
                           </span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-row">
+                    <div className="flex py-1 px-2 items-end rounded-full bg-greyLight">
+                      <div className="flex flex-col justify-start">
+                        <img
+                          src="./Play_Circle.png"
+                          className="flex"
+                          alt="play-btn"
+                        />
+                      </div>
+                      <div className="flex flex-col mx-1 justify-center items-center">
+                        <span className="text-xxs text-darkBlue">4</span>
+                      </div>
+                    </div>
+                    <div className="flex py-1 px-2 items-end mx-3 rounded-full bg-greyLight">
+                      <div className="flex flex-col justify-start">
+                        <NoteBookXS />
+                      </div>
+                      <div className="flex flex-col mx-1 justify-center items-center">
+                        <span className="text-xxs text-darkBlue">
+                          5 Programs
                         </span>
                       </div>
                     </div>
